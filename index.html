@@ -708,7 +708,7 @@
     <!-- Header -->
     <header id="header">
         <div class="container header-inner">
-            <div class="logo">導入前ヒアリング × AI提案 3アプリ</div>
+            <a href="#" class="logo">導入前ヒアリング × AI提案 3アプリ</a>
             <div class="header-cta">
                 <a href="#cta" class="btn btn-secondary" onclick="switchTab('tab-demo')">デモを見る</a>
                 <a href="#cta" class="btn btn-primary" onclick="switchTab('tab-contact')">無料相談</a>
@@ -1029,16 +1029,30 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
-                if (target) {
-                    const headerHeight = 70;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-                    
+
+                // If link is just "#", scroll to top
+                if (targetId === '#') {
                     window.scrollTo({
-                        top: offsetPosition,
+                        top: 0,
                         behavior: "smooth"
                     });
+                    return;
+                }
+
+                try {
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        const headerHeight = 70;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                } catch (err) {
+                    // Ignore invalid selectors
                 }
             });
         });
