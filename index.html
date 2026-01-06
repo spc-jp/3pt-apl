@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>導入前ヒアリング × AI提案 3アプリ | 業務提案の標準化ツール</title>
+    <meta name="description" content="FA・生産管理、Web制作、販売管理の導入前ヒアリングを標準化し、AI提案で「整理された提案」を実現する3つの業務アプリ。">
+    <meta property="og:title" content="導入前ヒアリング × AI提案 3アプリ">
+    <meta property="og:description" content="提案が弱くなる原因は、商品ではなく導入前の「整理」にあります。ヒアリングを標準化する3つのアプリ。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/">
+    
+    <!-- 構造化データ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "導入前ヒアリング × AI提案 3アプリ",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "JPY"
+      },
+      "description": "FA、Web、販売管理の導入前ヒアリングを標準化し、AIによる提案生成を支援するツールセット。"
+    }
+    </script>
+
+    <style>
+        :root {
+            --navy: #020562;
+            --cyan: #22AEC9;
+            --cyan-dark: #1b8ca1;
+            --white: #FEFEFE;
+            --bg: #f4f6f8;
+            --text: #334155;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --radius: 8px; /* 控えめな角丸 */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --header-height: 70px;
+        }
+
+        /* Base Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 16px;
+            padding-bottom: 80px; /* Mobile sticky bar space */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; transition: opacity 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        button { font-family: inherit; }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            color: var(--navy);
+            line-height: 1.5;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { padding: 60px 0; }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-primary {
+            background-color: var(--cyan);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(34, 174, 201, 0.25);
+        }
+        .btn-primary:hover {
+            background-color: var(--cyan-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--navy);
+            border: 1px solid var(--navy);
+        }
+        .btn-secondary:hover {
+            background-color: var(--navy);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+            border-color: var(--white);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            transition: box-shadow 0.3s;
+        }
+        header.scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--navy);
+            letter-spacing: 0.02em;
+        }
+
+        .header-cta {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .header-cta .btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            height: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header-cta { display: none; }
+            .logo { font-size: 1rem; }
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: var(--navy);
+            color: var(--white);
+            padding: 160px 0 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            color: var(--white);
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            letter-spacing: 0.05em;
+            line-height: 1.4;
+        }
+
+        .hero-text .sub-copy {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            border-left: 4px solid var(--cyan);
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .hero-note {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+
+        .hero-visual {
+            /* PC Only Diagram */
+        }
+
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .flow-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+        .flow-item:not(:last-child)::after {
+            content: "↓";
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.3);
+            font-size: 14px;
+        }
+        .flow-item.highlight {
+            background: rgba(34, 174, 201, 0.2);
+            border-color: var(--cyan);
+            color: var(--cyan);
+        }
+
+        @media (max-width: 900px) {
+            .hero-content { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 2rem; }
+            .hero-visual { display: none; }
+        }
+
+        /* Problems Section */
+        #problems {
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .check-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: var(--bg);
+            border-radius: var(--radius);
+            font-weight: 500;
+        }
+        .check-icon {
+            color: var(--white);
+            background: var(--cyan);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .problem-closing {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.8;
+        }
+
+        /* Concept Section */
+        #concept {
+            background: var(--bg);
+            text-align: center;
+        }
+        
+        .concept-body {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+        .concept-body p {
+            margin-bottom: 24px;
+        }
+
+        /* Apps Section */
+        #apps {
+            background: var(--white);
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .app-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s;
+        }
+        .app-card:hover {
+            box-shadow: var(--shadow);
+            border-color: var(--cyan);
+        }
+
+        .app-header {
+            background: var(--navy);
+            padding: 24px;
+            color: var(--white);
+            text-align: center;
+        }
+        .app-title {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .app-body {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-catch {
+            display: block;
+            color: var(--cyan-dark);
+            font-weight: 700;
+            margin-bottom: 24px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .app-content-list {
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+        .app-content-list li {
+            margin-bottom: 8px;
+            padding-left: 1.2em;
+            position: relative;
+        }
+        .app-content-list li::before {
+            content: "•";
+            color: var(--cyan);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .app-target {
+            background: var(--bg);
+            padding: 16px;
+            border-radius: var(--radius);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+        .app-target-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .app-footer {
+            padding: 20px 30px 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .app-footer .btn {
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .app-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+        }
+
+        /* Set Value Section */
+        #value {
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+        #value h2 { color: var(--white); }
+        .value-desc {
+            max-width: 600px;
+            margin: 20px auto 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Use Cases */
+        #cases {
+            background: var(--bg);
+        }
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* PCで必ず3列にする設定 */
+            gap: 24px;
+        }
+        .case-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius);
+            text-align: center;
+            font-weight: 600;
+            color: var(--navy);
+            border: 1px solid var(--border);
+        }
+        
+        @media (max-width: 768px) {
+            .case-grid {
+                grid-template-columns: 1fr; /* スマホでは1列に見やすく調整 */
+            }
+        }
+
+        /* Pre-CTA Message */
+        #pre-cta {
+            background: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+        .pre-cta-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* CTA Section */
+        #cta {
+            background: var(--bg);
+            padding-bottom: 120px;
+        }
+        
+        .cta-container {
+            background: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .cta-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .cta-header h2 { margin-bottom: 10px; }
+
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 24px;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            color: var(--navy);
+            border-bottom-color: var(--cyan);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.4s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .demo-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+        .demo-buttons .btn {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--navy);
+        }
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: #fcfcfc;
+            transition: border-color 0.2s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--cyan);
+            background: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.6);
+            padding: 60px 0 100px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .footer-links {
+            margin-bottom: 24px;
+        }
+        .footer-links a {
+            color: var(--white);
+            margin: 0 12px;
+            opacity: 0.8;
+        }
+        .footer-links a:hover { opacity: 1; }
+
+        /* Mobile Sticky Bar */
+        .mobile-sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 12px 16px;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            z-index: 999;
+            border-top: 1px solid var(--border);
+        }
+        .mobile-sticky-bar .btn {
+            flex: 1;
+            padding: 12px 0;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 769px) {
+            .mobile-sticky-bar { display: none; }
+            body { padding-bottom: 0; }
+            footer { padding-bottom: 60px; }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 5, 98, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--navy);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        #toast.show {
+            opacity: 1;
+            visibility: visible;
+            bottom: 120px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-inner">
+            <div class="logo">導入前ヒアリング × AI提案 3アプリ</div>
+            <div class="header-cta">
+                <a href="#cta" class="btn btn-secondary" onclick="switchTab('tab-demo')">デモを見る</a>
+                <a href="#cta" class="btn btn-primary" onclick="switchTab('tab-contact')">無料相談</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>提案が弱くなる原因は、<br>商品ではなく<br>導入前の「整理」にあります。</h1>
+                <p class="sub-copy">ヒアリングを、<br>課題整理・優先順位付け・AI提案へ。<br>考え込まずに、提案できる状態をつくる<br>導入前ヒアリング × AI提案 3アプリ。</p>
+                <div class="hero-buttons">
+                    <a href="#apps" class="btn btn-primary">3つのアプリを見る</a>
+                    <a href="#cta" class="btn btn-outline" onclick="switchTab('tab-demo')">デモを見る</a>
+                    <a href="#cta" class="btn btn-outline" onclick="switchTab('tab-contact')">無料相談する</a>
+                </div>
+                <p class="hero-note">売れない理由は、説明不足ではありません。<br>提案前に、整理できていないだけです。</p>
+            </div>
+            <div class="hero-visual">
+                <div class="flow-diagram">
+                    <div class="flow-item">現状ヒアリング</div>
+                    <div class="flow-item">課題整理</div>
+                    <div class="flow-item highlight">優先順位</div>
+                    <div class="flow-item highlight">AI提案生成</div>
+                    <div class="flow-item">PDF共有</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems -->
+    <section id="problems" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>こんな「提案前の悩み」、ありませんか？</h2>
+            </div>
+            <div class="check-list">
+                <div class="check-item"><span class="check-icon">✓</span>ヒアリングが属人化している</div>
+                <div class="check-item"><span class="check-icon">✓</span>提案書を毎回ゼロから作っている</div>
+                <div class="check-item"><span class="check-icon">✓</span>社長と現場の話が噛み合わない</div>
+                <div class="check-item"><span class="check-icon">✓</span>比較表だけの提案になってしまう</div>
+                <div class="check-item"><span class="check-icon">✓</span>小規模案件ほど時間がかかる</div>
+                <div class="check-item"><span class="check-icon">✓</span>新人の提案品質が安定しない</div>
+            </div>
+            <p class="problem-closing">
+                問題は、<br>商品でも、価格でもありません。<br>提案前の整理ができていないことです。
+            </p>
+        </div>
+    </section>
+
+    <!-- Concept -->
+    <section id="concept" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>私たちは、「売る前」を仕組みにしました</h2>
+            </div>
+            <div class="concept-body">
+                <p>この3つのアプリは、<br>システムを売るためのツールではありません。</p>
+                <p>現状を整理し、<br>課題を見える化し、<br>次に何を提案すべきかを<br>迷わず判断できる状態をつくる。</p>
+                <p>そのための<br>導入前ヒアリング専用ツールです。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apps -->
+    <section id="apps" class="section-padding">
+        <div class="container">
+            <div class="app-grid">
+                <!-- App 1: Sales (Moved to Left) -->
+                <article class="app-card">
+                    <div class="app-header">
+                        <h3 class="app-title">販売管理</h3>
+                    </div>
+                    <div class="app-body">
+                        <span class="app-catch">「とりあえず導入」を、終わらせる</span>
+                        <ul class="app-content-list">
+                            <li>業務整理</li>
+                            <li>必要機能抽出</li>
+                            <li>比較検討支援</li>
+                            <li>論理的提案</li>
+                            <li>次アクション明確化</li>
+                        </ul>
+                        <div class="app-target">
+                            <span class="app-target-label">向いている人</span>
+                            販売管理提案あり / 小規模企業中心 / 属人化を減らしたい
+                        </div>
+                    </div>
+                    <div class="app-footer">
+                        <button class="btn btn-secondary" onclick="openModal('modal-sales')">詳細を見る</button>
+                        <a href="https://example.com/sales" target="_blank" class="btn btn-primary">デモへ</a>
+                    </div>
+                </article>
+
+                <!-- App 2: FA (Moved to Center) -->
+                <article class="app-card">
+                    <div class="app-header">
+                        <h3 class="app-title">FA・生産管理</h3>
+                    </div>
+                    <div class="app-body">
+                        <span class="app-catch">まずは「どこから手を付けるか」を決める</span>
+                        <ul class="app-content-list">
+                            <li>現状レベル診断</li>
+                            <li>おすすめ領域自動判定</li>
+                            <li>スモールスタート提案</li>
+                            <li>PDF出力</li>
+                            <li>AI提案プロンプト生成</li>
+                        </ul>
+                        <div class="app-target">
+                            <span class="app-target-label">向いている人</span>
+                            製造業向け提案が多い / 段階提案をしたい / 提案の型を残したい
+                        </div>
+                    </div>
+                    <div class="app-footer">
+                        <button class="btn btn-secondary" onclick="openModal('modal-fa')">詳細を見る</button>
+                        <a href="https://example.com/fa" target="_blank" class="btn btn-primary">デモへ</a>
+                    </div>
+                </article>
+
+                <!-- App 3: Web (Moved to Right) -->
+                <article class="app-card">
+                    <div class="app-header">
+                        <h3 class="app-title">Web制作</h3>
+                    </div>
+                    <div class="app-body">
+                        <span class="app-catch">「作る前」に、目的を決める</span>
+                        <ul class="app-content-list">
+                            <li>目的整理</li>
+                            <li>要望の言語化</li>
+                            <li>構成案生成</li>
+                            <li>改善提案</li>
+                            <li>提案品質向上</li>
+                        </ul>
+                        <div class="app-target">
+                            <span class="app-target-label">向いている人</span>
+                            価格競争を抜けたい / 提案型Web制作 / 要件ブレが多い
+                        </div>
+                    </div>
+                    <div class="app-footer">
+                        <button class="btn btn-secondary" onclick="openModal('modal-web')">詳細を見る</button>
+                        <a href="https://example.com/web" target="_blank" class="btn btn-primary">デモへ</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Set Value -->
+    <section id="value" class="section-padding">
+        <div class="container">
+            <h2>3つ揃うと、<br>提案は迷わなくなります。</h2>
+            <p class="value-desc">
+                新人でも、ベテランでも。<br>同じ軸でヒアリングし、<br>同じ品質で提案できる仕組みが完成します。
+            </p>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="cases" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>活用シーン</h2>
+            </div>
+            <div class="case-grid">
+                <div class="case-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 10px;">💼</span>
+                    初回商談
+                </div>
+                <div class="case-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 10px;">🏢</span>
+                    社内整理
+                </div>
+                <div class="case-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 10px;">🔰</span>
+                    新人教育
+                </div>
+                <div class="case-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 10px;">🔄</span>
+                    既存顧客の見直し
+                </div>
+                <div class="case-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 10px;">💻</span>
+                    オンライン商談
+                </div>
+                <div class="case-card">
+                    <span style="font-size: 2rem; display: block; margin-bottom: 10px;">📝</span>
+                    提案書の叩き台
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre CTA Message -->
+    <section id="pre-cta">
+        <div class="container">
+            <p class="pre-cta-text">
+                売り込むためのツールではありません。<br>整理して、正しく提案するための仕組みです。
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+        <div class="container">
+            <div class="cta-container">
+                <div class="cta-header">
+                    <h2>まずは、<br>「ヒアリングの違い」を<br>体験してみてください。</h2>
+                </div>
+
+                <div class="tab-nav">
+                    <button class="tab-btn active" onclick="switchTab('tab-demo', this)">デモを見る</button>
+                    <button class="tab-btn" onclick="switchTab('tab-contact', this)">無料相談</button>
+                    <button class="tab-btn" onclick="switchTab('tab-download', this)">資料ダウンロード</button>
+                </div>
+
+                <!-- Tab: Demo -->
+                <div id="tab-demo" class="tab-content active">
+                    <div class="demo-buttons">
+                        <a href="https://example.com/sales" target="_blank" class="btn btn-primary">販売管理 デモを見る</a>
+                        <a href="https://example.com/fa" target="_blank" class="btn btn-primary">FA・生産管理 デモを見る</a>
+                        <a href="https://example.com/web" target="_blank" class="btn btn-primary">Web制作 デモを見る</a>
+                    </div>
+                </div>
+
+                <!-- Tab: Contact -->
+                <div id="tab-contact" class="tab-content">
+                    <div style="text-align: center; padding: 20px 0;">
+                        <p style="margin-bottom: 24px;">お問い合わせ・ご相談は、<br>下記専用フォームより承っております。</p>
+                        <a href="https://www.smileplusctg.com/contact" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%; max-width: 400px;">
+                            無料相談フォームへ（SPCサイト）
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tab: Download -->
+                <div id="tab-download" class="tab-content">
+                    <form onsubmit="handleSubmit(event, '資料ダウンロードURLを送信しました')">
+                        <div class="form-group">
+                            <label>お名前</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>メールアドレス</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%">資料をダウンロード</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <span style="color: var(--white); margin: 0 12px; opacity: 0.8;">制作・運営：spc</span>
+                <a href="https://www.smileplusctg.com/blank" target="_blank" rel="noopener">プライバシーポリシー</a>
+            </div>
+            <p>&copy; 2024 AI Proposal Tools All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Bar -->
+    <div class="mobile-sticky-bar">
+        <a href="#cta" class="btn btn-secondary" onclick="switchTab('tab-demo')">デモを見る</a>
+        <a href="#cta" class="btn btn-primary" onclick="switchTab('tab-contact')">無料相談</a>
+    </div>
+
+    <!-- Modals -->
+    <!-- FA Modal -->
+    <div id="modal-fa" class="modal-overlay" onclick="closeModal('modal-fa')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal('modal-fa')">×</button>
+            <h3>FA・生産管理</h3>
+            <p>詳細なヒアリングフローと、AIによる自動提案ロジックの詳細をご確認いただけます。</p>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+            <ul>
+                <li>・現場の抵抗感を数値化するアルゴリズム</li>
+                <li>・補助金活用を見据えたドキュメント生成</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Web Modal -->
+    <div id="modal-web" class="modal-overlay" onclick="closeModal('modal-web')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal('modal-web')">×</button>
+            <h3>Web制作</h3>
+            <p>競合分析から、ターゲットユーザーのペルソナ設計までをヒアリングから自動生成します。</p>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+            <ul>
+                <li>・SEOキーワードの自動提案</li>
+                <li>・サイトマップ構成案の自動生成</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Sales Modal -->
+    <div id="modal-sales" class="modal-overlay" onclick="closeModal('modal-sales')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal('modal-sales')">×</button>
+            <h3>販売管理</h3>
+            <p>独自の商習慣や伝票フローを標準化し、パッケージ適合率を判定します。</p>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
+            <ul>
+                <li>・インボイス対応状況のチェック</li>
+                <li>・業務フロー図の簡易生成</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast"></div>
+
+    <script>
+        // Smooth Scroll handling with offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const headerHeight = 70;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tabId, btn) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            // Show target tab
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update button states
+            // If function is called from a button click (has 'btn' arg)
+            if (btn) {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            } else {
+                // If called from other links, find corresponding button
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active');
+                    if (b.getAttribute('onclick').includes(tabId)) {
+                        b.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        // Modal Controls
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(el => {
+                    closeModal(el.id);
+                });
+            }
+        });
+
+        // Form Submit & Toast
+        function handleSubmit(e, message) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            // Dummy reset
+            e.target.reset();
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Header Shadow on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
